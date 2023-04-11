@@ -9,6 +9,10 @@
     "url": "git+https://github.com/vroskus/library-validator.git"
   },
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist/"
+  ],
   "scripts": {
     "postinstall": "npm run build",
     "build": "tsc",
@@ -19,7 +23,7 @@
     "test:e2e:post": "jest-coverage-thresholds-bumper"
   },
   "dependencies": {
-    "@vroskus/library-error": "1.0.6",
+    "@vroskus/library-error": "1.0.7",
     "express": "4.18.2",
     "express-validator": "6.15.0",
     "is-uuid": "1.0.2",

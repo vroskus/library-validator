@@ -14,7 +14,10 @@ import type {
 export const Validator = Joi;
 
 // validateResponse method
-const validateResponse = <D extends Record<string, unknown>>(data: D, schema: $Schema): D => {
+const validateResponse = <D extends Record<string, unknown> | Array<Record<string, unknown>>>(
+  data: D,
+  schema: $Schema,
+): D => {
   let validationData = data;
 
   if (_.isObject(data)) {

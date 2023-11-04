@@ -14,23 +14,12 @@ import {
 } from '@vroskus/library-error';
 
 // Types
-type $ValidationError = {
-  msg: string;
-  param: any;
-  value?: any;
-  location?: 'body' | 'query' | 'params' | 'cookies' | 'headers';
-  nestedErrors?: Array<unknown>; // nestedErrors only exist when using the oneOf function
-};
+import type {
+  Result,
+  ValidationError,
+} from 'express-validator';
 
-type $ValidationResult = {
-  isEmpty: () => boolean;
-  formatWith: (formatter: any) => $ValidationResult;
-  array: (options?: {
-    onlyFirstError: boolean;
-  }) => Array<$ValidationError>;
-  mapped: () => unknown;
-  throw: () => unknown;
-};
+type $ValidationResult = Result<ValidationError>;
 
 const removeEmptyValues = <O extends object>(object: O): O => {
   if (typeof object === 'string') {

@@ -51,7 +51,7 @@ export const validQueryString: $ValidQueryString = (item, required) => {
   return queryItem.isString().withMessage(`'${item}' has to be a string`);
 };
 
-type $ValidParamsBase = (item: string, required?: boolean) => any;
+type $ValidParamsBase = (item: string, required?: boolean) => ValidationChain;
 
 const validParamsBase: $ValidParamsBase = (item, required = false) => {
   const paramsItem = param(item);

@@ -50,7 +50,7 @@ describe(
       req: $Request,
       res: $Response,
       location?: 'body' | 'params',
-      value?: object,
+      value?: unknown,
     ) => {
       try {
         const result = validateRequest(req);
@@ -75,10 +75,10 @@ describe(
       validateNull,
       validationChain,
     }: {
-      validationChain: any,
+      validationChain: (required: boolean) => express.RequestHandler<unknown>,
       item: string,
-      itemValue: any,
-      itemInvalidValue: any,
+      itemValue: unknown,
+      itemInvalidValue: unknown,
       validateNull?: boolean,
     }) => {
       it(

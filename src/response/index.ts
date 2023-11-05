@@ -44,7 +44,9 @@ const validateResponse = <D extends Record<string, unknown> | Array<Record<strin
       'Data validation did not pass',
       baseErrorKey.dataValidationError,
       {
-        data: error,
+        data: {
+          error,
+        },
       },
     );
   }

@@ -42,8 +42,8 @@ const removeEmptyValues = <O extends object>(object: O): O => {
 };
 
 const validateRequest = <
-B extends Record<string, any>,
-P extends Record<string, any>,
+B extends Record<string, unknown>,
+P extends Record<string, unknown>,
 >(req: $Request): {
     body: B;
     params: P;

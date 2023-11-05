@@ -4,4 +4,4 @@ import type {
 
 export type $Validator = AnySchema;
 
-export type $Schema = (...args: any) => $Validator;
+export type $Schema = (...args: unknown[]) => $Validator;

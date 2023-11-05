@@ -11,7 +11,7 @@ string,
 const customValidators: $CustomValidators = {
   intersects: async (
     param: Array<string>,
-    array: Array<string>
+    array: Array<string>,
   ) => new Promise((resolve, reject) => {
     const result = _.filter(
       param,

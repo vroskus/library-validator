@@ -5,7 +5,7 @@ import isUUID from 'is-uuid';
 
 type $CustomValidators = Record<
 string,
-(...args: Array<Array<string> | string | boolean>) => Promise<void>
+(...args: Array<Array<string> | boolean | string>) => Promise<void>
 >;
 
 const customValidators: $CustomValidators = {

@@ -9,8 +9,8 @@ import {
   validationResult,
 } from 'express-validator';
 import {
-  baseErrorKey,
   CustomError,
+  baseErrorKey,
 } from '@vroskus/library-error';
 
 // Types

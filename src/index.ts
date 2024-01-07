@@ -29,6 +29,6 @@ export {
   validQueryString,
 } from './request';
 export {
-  default as validateResponse,
   Validator,
+  default as validateResponse,
 } from './response';

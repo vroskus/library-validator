@@ -75,11 +75,11 @@ describe(
       validateNull,
       validationChain,
     }: {
-      validationChain: (required: boolean) => express.RequestHandler<unknown>,
       item: string,
-      itemValue: unknown,
       itemInvalidValue: unknown,
+      itemValue: unknown,
       validateNull?: boolean,
+      validationChain: (required: boolean) => express.RequestHandler<unknown>,
     }) => {
       it(
         'should validate undefined optional value',

@@ -2,8 +2,8 @@
 import * as Joi from 'joi';
 import _ from 'lodash';
 import {
-  baseErrorKey,
   CustomError,
+  baseErrorKey,
 } from '@vroskus/library-error';
 
 // Types
@@ -14,7 +14,7 @@ import type {
 export const Validator = Joi;
 
 // validateResponse method
-const validateResponse = <D extends Record<string, unknown> | Array<Record<string, unknown>>>(
+const validateResponse = <D extends Array<Record<string, unknown>> | Record<string, unknown>>(
   data: D,
   schema: $Schema,
 ): D => {

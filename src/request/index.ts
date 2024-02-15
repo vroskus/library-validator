@@ -21,18 +21,20 @@ import type {
 
 type $ValidationResult = Result<ValidationError>;
 
-const removeEmptyValues = <O extends object>(object: O): O => {
+const removeEmptyValues = <O extends Record<string, unknown>>(object: O): O => {
   if (typeof object === 'string') {
     return object;
   }
 
   // eslint-disable-next-line complexity
   Object.keys(object).forEach((key: string) => {
-    if (object[key] && Array.isArray(object[key])) {
-      object[key].map(removeEmptyValues);
-    } else if (object[key] && typeof object[key] === 'object') {
-      removeEmptyValues(object[key]);
-    } else if (object[key] === undefined) {
+    const innerObject = object[key];
+
+    if (innerObject && Array.isArray(innerObject)) {
+      innerObject.map(removeEmptyValues);
+    } else if (innerObject && typeof innerObject === 'object') {
+      removeEmptyValues(innerObject as Record<string, unknown>);
+    } else if (innerObject === undefined) {
       // eslint-disable-next-line no-param-reassign
       delete object[key];
     }
@@ -41,12 +43,14 @@ const removeEmptyValues = <O extends object>(object: O): O => {
   return object;
 };
 
-const validateRequest = <
-B extends Record<string, unknown>,
-P extends Record<string, unknown>,
->(req: $Request): {
-    body: B;
-    params: P;
+const validateRequest = <I extends {
+  body?: Record<string, unknown>;
+  params?: Record<string, unknown>;
+  query?: Record<string, unknown>;
+}>(req: $Request): {
+    body?: I['body'];
+    params?: I['params'];
+    query?: I['query'];
   } => {
   const result: $ValidationResult = validationResult(req);
 
@@ -65,32 +69,33 @@ P extends Record<string, unknown>,
     );
   }
 
-  const matchedBody = matchedData(
-    req,
-    {
-      includeOptionals: true,
-      locations: ['body'],
-    },
-  );
-
-  // @ts-ignore
-  const body: B = removeEmptyValues<B>(matchedBody);
-
-  const matchedParams = matchedData(
-    req,
-    {
-      includeOptionals: true,
-      locations: ['params'],
-    },
-  );
-
-  // @ts-ignore
-  const params: P = removeEmptyValues<P>(matchedParams);
-
-  return {
-    body,
-    params,
+  const data = {
+    body: matchedData(
+      req,
+      {
+        includeOptionals: true,
+        locations: ['body'],
+      },
+    ) as I['body'],
+    params: matchedData(
+      req,
+      {
+        includeOptionals: true,
+        locations: ['params'],
+      },
+    ) as I['params'],
+    query: matchedData(
+      req,
+      {
+        includeOptionals: true,
+        locations: ['query'],
+      },
+    ) as I['query'],
   };
+
+  const cleanData = removeEmptyValues(data);
+
+  return cleanData;
 };
 
 export {

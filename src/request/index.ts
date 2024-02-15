@@ -34,7 +34,7 @@ const removeEmptyValues = <O extends Record<string, unknown>>(object: O): O => {
       innerObject.map(removeEmptyValues);
     } else if (innerObject && typeof innerObject === 'object') {
       removeEmptyValues(innerObject as Record<string, unknown>);
-    } else if (innerObject === undefined) {
+    } else if (typeof innerObject === 'undefined') {
       // eslint-disable-next-line no-param-reassign
       delete object[key];
     }

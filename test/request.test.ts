@@ -10,7 +10,7 @@ import bodyParser from 'body-parser';
 import request from 'supertest';
 import _ from 'lodash';
 import {
-  baseErrorKey,
+  BaseErrorKey,
   errorResponse,
 } from '@vroskus/library-error';
 
@@ -157,7 +157,7 @@ describe(
             })
             .expect(400)
             .expect((res) => {
-              expect(res.body.key).toEqual(baseErrorKey.parametersValidationError);
+              expect(res.body.key).toEqual(BaseErrorKey.parametersValidationError);
             })
             .end(done);
         },
@@ -181,7 +181,7 @@ describe(
             .post('/')
             .expect(400)
             .expect((res) => {
-              expect(res.body.key).toEqual(baseErrorKey.parametersValidationError);
+              expect(res.body.key).toEqual(BaseErrorKey.parametersValidationError);
             })
             .end(done);
         },
@@ -208,7 +208,7 @@ describe(
             })
             .expect(400)
             .expect((res) => {
-              expect(res.body.key).toEqual(baseErrorKey.parametersValidationError);
+              expect(res.body.key).toEqual(BaseErrorKey.parametersValidationError);
             })
             .end(done);
         },
@@ -347,7 +347,7 @@ describe(
               .post('/')
               .expect(400)
               .expect((res) => {
-                expect(res.body.key).toEqual(baseErrorKey.parametersValidationError);
+                expect(res.body.key).toEqual(BaseErrorKey.parametersValidationError);
               })
               .end(done);
           },
@@ -546,7 +546,7 @@ describe(
               .post('/')
               .expect(400)
               .expect((res) => {
-                expect(res.body.key).toEqual(baseErrorKey.parametersValidationError);
+                expect(res.body.key).toEqual(BaseErrorKey.parametersValidationError);
               })
               .end(done);
           },
@@ -634,7 +634,7 @@ describe(
               .post(`/${itemInvalidValue}`)
               .expect(400)
               .expect((res) => {
-                expect(res.body.key).toEqual(baseErrorKey.parametersValidationError);
+                expect(res.body.key).toEqual(BaseErrorKey.parametersValidationError);
               })
               .end(done);
           },
@@ -731,7 +731,7 @@ describe(
               .post(`/${itemInvalidValue}`)
               .expect(400)
               .expect((res) => {
-                expect(res.body.key).toEqual(baseErrorKey.parametersValidationError);
+                expect(res.body.key).toEqual(BaseErrorKey.parametersValidationError);
               })
               .end(done);
           },
@@ -1287,7 +1287,7 @@ describe(
               })
               .expect(400)
               .expect((res) => {
-                expect(res.body.key).toEqual(baseErrorKey.parametersValidationError);
+                expect(res.body.key).toEqual(BaseErrorKey.parametersValidationError);
                 expect(res.body.data.errors).toHaveLength(1);
               })
               .end(done);
@@ -1315,7 +1315,7 @@ describe(
               })
               .expect(400)
               .expect((res) => {
-                expect(res.body.key).toEqual(baseErrorKey.parametersValidationError);
+                expect(res.body.key).toEqual(BaseErrorKey.parametersValidationError);
                 expect(res.body.data.errors).toHaveLength(1);
               })
               .end(done);

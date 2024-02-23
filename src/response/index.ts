@@ -2,8 +2,8 @@
 import * as Joi from 'joi';
 import _ from 'lodash';
 import {
+  BaseErrorKey,
   CustomError,
-  baseErrorKey,
 } from '@vroskus/library-error';
 
 // Types
@@ -42,7 +42,7 @@ const validateResponse = <D extends Array<Record<string, unknown>> | Record<stri
   if (error) {
     throw new CustomError(
       'Data validation did not pass',
-      baseErrorKey.dataValidationError,
+      BaseErrorKey.dataValidationError,
       {
         data: {
           error,

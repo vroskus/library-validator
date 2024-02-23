@@ -9,8 +9,8 @@ import {
   validationResult,
 } from 'express-validator';
 import {
+  BaseErrorKey,
   CustomError,
-  baseErrorKey,
 } from '@vroskus/library-error';
 
 // Types
@@ -59,7 +59,7 @@ const validateRequest = <I extends {
 
     throw new CustomError(
       'Invalid request parameters',
-      baseErrorKey.parametersValidationError,
+      BaseErrorKey.parametersValidationError,
       {
         data: {
           errors,

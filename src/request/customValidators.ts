@@ -30,7 +30,7 @@ const customValidators: $CustomValidators = {
   isDate: async (
     param: unknown,
   ) => new Promise((resolve, reject) => {
-    if (moment(param).isValid()) {
+    if (param && moment(param).isValid()) {
       resolve();
     } else {
       reject();
@@ -39,7 +39,7 @@ const customValidators: $CustomValidators = {
   isObject: async (
     param: unknown,
     required?: boolean,
-  ) => new Promise((resolve, reject) => {
+  ): Promise<void> => new Promise((resolve, reject) => {
     if (_.isPlainObject(param) || (!required && param === null)) {
       resolve();
     } else {
@@ -49,7 +49,7 @@ const customValidators: $CustomValidators = {
   isObjectLike: async (
     param: unknown,
     required?: boolean,
-  ) => new Promise((resolve, reject) => {
+  ): Promise<void> => new Promise((resolve, reject) => {
     if (_.isObjectLike(param) || (!required && param === null)) {
       resolve();
     } else {
@@ -57,9 +57,9 @@ const customValidators: $CustomValidators = {
     }
   }),
   isUUIDv4: async (
-    param: string,
-  ) => new Promise((resolve, reject) => {
-    if (isUUID.v4(param)) {
+    param: unknown,
+  ): Promise<void> => new Promise((resolve, reject) => {
+    if (param && isUUID.v4(param)) {
       resolve();
     } else {
       reject();

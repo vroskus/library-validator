@@ -433,7 +433,7 @@ export const validBodyObject: $ValidBodyObject = (item, required) => {
 
   return bodyItem.custom((value) => isObject(
     value,
-    required,
+    required || false,
   ))
     .withMessage(`'${item}' has to be an object`);
 };
@@ -452,7 +452,7 @@ export const validBodyObjectLike: $ValidBodyObjectLike = (item, required) => {
 
   return bodyItem.custom((value) => isObjectLike(
     value,
-    required,
+    required || false,
   ))
     .withMessage(`'${item}' has to be an object-like`);
 };

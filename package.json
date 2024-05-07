@@ -22,7 +22,7 @@
     "test:e2e:post": "jest-coverage-thresholds-bumper"
   },
   "dependencies": {
-    "@vroskus/library-error": "^1.0.21",
+    "@vroskus/library-error": "^1.0.22",
     "express": "^4.19.1",
     "express-validator": "^7.0.1",
     "is-uuid": "^1.0.2",
@@ -68,7 +68,7 @@
     ],
     "coverageThreshold": {
       "global": {
-        "branches": 45.73,
+        "branches": 47.67,
         "functions": 64.96,
         "lines": 71.38,
         "statements": 66

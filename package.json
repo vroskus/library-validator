@@ -22,11 +22,11 @@
     "test:e2e:post": "jest-coverage-thresholds-bumper"
   },
   "dependencies": {
-    "@vroskus/library-error": "^1.0.22",
-    "express": "^4.19.1",
+    "@vroskus/library-error": "^1.0.23",
+    "express": "^4.19.2",
     "express-validator": "^7.0.1",
     "is-uuid": "^1.0.2",
-    "joi": "^17.12.2",
+    "joi": "^17.13.1",
     "lodash": "^4.17.21",
     "moment": "2.29.4"
   },
@@ -35,11 +35,11 @@
     "@types/express-validator": "^3.0.0",
     "@types/jest": "^29.5.12",
     "@types/joi": "^17.2.3",
-    "@types/lodash": "^4.17.0",
+    "@types/lodash": "^4.17.1",
     "@types/moment": "^2.13.0",
-    "@types/node": "^20.11.30",
-    "@typescript-eslint/eslint-plugin": "^7.3.1",
-    "@typescript-eslint/parser": "^7.3.1",
+    "@types/node": "^20.12.10",
+    "@typescript-eslint/eslint-plugin": "^7.8.0",
+    "@typescript-eslint/parser": "^7.8.0",
     "body-parser": "^1.20.2",
     "eslint": "^8.57.0",
     "eslint-config-airbnb-base": "^15.0.0",
@@ -47,13 +47,13 @@
     "eslint-config-problems": "^8.0.0",
     "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-import-newlines": "^1.4.0",
-    "eslint-plugin-perfectionist": "^2.7.0",
+    "eslint-plugin-perfectionist": "^2.10.0",
     "eslint-plugin-react": "^7.34.1",
     "jest": "^29.7.0",
     "jest-coverage-thresholds-bumper": "^1.1.0",
-    "supertest": "^6.3.4",
+    "supertest": "^7.0.0",
     "ts-jest": "^29.1.2",
-    "typescript": "^5.4.3"
+    "typescript": "^5.4.5"
   },
   "jest": {
     "preset": "ts-jest",

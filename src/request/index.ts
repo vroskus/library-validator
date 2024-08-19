@@ -59,7 +59,7 @@ const validateRequest = <I extends {
 
     throw new CustomError(
       'Invalid request parameters',
-      BaseErrorKey.parametersValidationError,
+      BaseErrorKey.requestValidationError,
       {
         data: {
           errors,

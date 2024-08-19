@@ -1,3 +1,5 @@
+/* eslint-disable sonarjs/no-duplicate-string */
+
 // Global Types
 import type {
   Request as $Request,

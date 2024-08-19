@@ -93,9 +93,7 @@ const validateRequest = <I extends {
     ) as I['query'],
   };
 
-  const cleanData = removeEmptyValues(data);
-
-  return cleanData;
+  return removeEmptyValues(data);
 };
 
 export {

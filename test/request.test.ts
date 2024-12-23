@@ -43,6 +43,10 @@ import validateRequest, {
   validParamsString,
 } from '../src/request';
 
+const successStatus: number = 200;
+const errorStatus: number = 400;
+const oneValue: number = 1;
+
 describe(
   'validationChain',
   () => {
@@ -77,11 +81,11 @@ describe(
       validateNull,
       validationChain,
     }: {
-      item: string,
-      itemInvalidValue: unknown,
-      itemValue: unknown,
-      validateNull?: boolean,
-      validationChain: (required: boolean) => express.RequestHandler<unknown>,
+      item: string;
+      itemInvalidValue: unknown;
+      itemValue: unknown;
+      validateNull?: boolean;
+      validationChain: (required: boolean) => express.RequestHandler<unknown>;
     }) => {
       it(
         'should validate undefined optional value',
@@ -102,7 +106,7 @@ describe(
 
           request(app)
             .post('/')
-            .expect(200)
+            .expect(successStatus)
             .end(done);
         },
       );
@@ -130,7 +134,7 @@ describe(
           request(app)
             .post('/')
             .send(payload)
-            .expect(200)
+            .expect(successStatus)
             .end(done);
         },
       );
@@ -157,7 +161,7 @@ describe(
             .send({
               [_.capitalize(item)]: itemValue,
             })
-            .expect(400)
+            .expect(errorStatus)
             .expect((res) => {
               expect(res.body.key).toEqual(BaseErrorKey.requestValidationError);
             })
@@ -181,7 +185,7 @@ describe(
 
           request(app)
             .post('/')
-            .expect(400)
+            .expect(errorStatus)
             .expect((res) => {
               expect(res.body.key).toEqual(BaseErrorKey.requestValidationError);
             })
@@ -208,7 +212,7 @@ describe(
             .send({
               [item]: itemInvalidValue,
             })
-            .expect(400)
+            .expect(errorStatus)
             .expect((res) => {
               expect(res.body.key).toEqual(BaseErrorKey.requestValidationError);
             })
@@ -242,7 +246,7 @@ describe(
               .send({
                 [item]: null,
               })
-              .expect(200)
+              .expect(successStatus)
               .end(done);
           },
         );
@@ -272,7 +276,7 @@ describe(
               .send({
                 [item]: null,
               })
-              .expect(200)
+              .expect(successStatus)
               .end(done);
           },
         );
@@ -317,7 +321,7 @@ describe(
 
             request(app)
               .post('/')
-              .expect(200)
+              .expect(successStatus)
               .end(done);
           },
         );
@@ -347,7 +351,7 @@ describe(
 
             request(app)
               .post('/')
-              .expect(400)
+              .expect(errorStatus)
               .expect((res) => {
                 expect(res.body.key).toEqual(BaseErrorKey.requestValidationError);
               })
@@ -394,7 +398,7 @@ describe(
               .send({
                 [item]: itemValue,
               })
-              .expect(200)
+              .expect(successStatus)
               .end(done);
           },
         );
@@ -421,11 +425,12 @@ describe(
             });
 
             it(
-              'should return only validated (and optional) nested body objects while maintaing the same path',
+              'should return only validated (and optional) nested body objects while marinating the same path',
               (done) => {
                 app.post(
                   '/',
                   validBodyObject('*.a'),
+                  /* eslint-disable-next-line sonarjs/no-nested-functions */
                   (req: $Request, res: $Response) => {
                     try {
                       const {
@@ -460,7 +465,7 @@ describe(
                 request(app)
                   .post('/')
                   .send(deepPayload)
-                  .expect(200)
+                  .expect(successStatus)
                   .end(done);
               },
             );
@@ -494,7 +499,7 @@ describe(
 
             request(app)
               .post('/')
-              .expect(200)
+              .expect(successStatus)
               .end(done);
           },
         );
@@ -522,7 +527,7 @@ describe(
 
             request(app)
               .post(`/${itemValue}`)
-              .expect(200)
+              .expect(successStatus)
               .end(done);
           },
         );
@@ -546,7 +551,7 @@ describe(
 
             request(app)
               .post('/')
-              .expect(400)
+              .expect(errorStatus)
               .expect((res) => {
                 expect(res.body.key).toEqual(BaseErrorKey.requestValidationError);
               })
@@ -582,7 +587,7 @@ describe(
 
             request(app)
               .post('/')
-              .expect(200)
+              .expect(successStatus)
               .end(done);
           },
         );
@@ -610,7 +615,7 @@ describe(
 
             request(app)
               .post(`/${itemValue}`)
-              .expect(200)
+              .expect(successStatus)
               .end(done);
           },
         );
@@ -634,7 +639,7 @@ describe(
 
             request(app)
               .post(`/${itemInvalidValue}`)
-              .expect(400)
+              .expect(errorStatus)
               .expect((res) => {
                 expect(res.body.key).toEqual(BaseErrorKey.requestValidationError);
               })
@@ -677,7 +682,7 @@ describe(
 
             request(app)
               .post('/')
-              .expect(200)
+              .expect(successStatus)
               .end(done);
           },
         );
@@ -706,7 +711,7 @@ describe(
 
             request(app)
               .post(`/${itemValue}`)
-              .expect(200)
+              .expect(successStatus)
               .end(done);
           },
         );
@@ -731,7 +736,7 @@ describe(
 
             request(app)
               .post(`/${itemInvalidValue}`)
-              .expect(400)
+              .expect(errorStatus)
               .expect((res) => {
                 expect(res.body.key).toEqual(BaseErrorKey.requestValidationError);
               })
@@ -770,7 +775,7 @@ describe(
 
             request(app)
               .post(`/${itemValue}`)
-              .expect(200)
+              .expect(successStatus)
               .end(done);
           },
         );
@@ -810,7 +815,7 @@ describe(
 
             request(app)
               .post(`/${itemValue}/${itemInvalidValue}`)
-              .expect(200)
+              .expect(successStatus)
               .end(done);
           },
         );
@@ -1263,7 +1268,7 @@ describe(
 
             request(app)
               .post('/')
-              .expect(200)
+              .expect(successStatus)
               .end(done);
           },
         );
@@ -1287,10 +1292,10 @@ describe(
               .send({
                 [item]: itemValue,
               })
-              .expect(400)
+              .expect(errorStatus)
               .expect((res) => {
                 expect(res.body.key).toEqual(BaseErrorKey.requestValidationError);
-                expect(res.body.data.errors).toHaveLength(1);
+                expect(res.body.data.errors).toHaveLength(oneValue);
               })
               .end(done);
           },
@@ -1315,10 +1320,10 @@ describe(
               .send({
                 [item]: itemValue,
               })
-              .expect(400)
+              .expect(errorStatus)
               .expect((res) => {
                 expect(res.body.key).toEqual(BaseErrorKey.requestValidationError);
-                expect(res.body.data.errors).toHaveLength(1);
+                expect(res.body.data.errors).toHaveLength(oneValue);
               })
               .end(done);
           },

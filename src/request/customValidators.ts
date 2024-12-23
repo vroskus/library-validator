@@ -8,6 +8,8 @@ string,
 (...args: Array<Array<string> | boolean | string>) => Promise<void>
 >;
 
+const zeroValue: number = 0;
+
 const customValidators: $CustomValidators = {
   intersects: async (
     param: Array<string>,
@@ -21,7 +23,7 @@ const customValidators: $CustomValidators = {
       ),
     );
 
-    if (result.length === 0) {
+    if (result.length === zeroValue) {
       resolve();
     } else {
       reject();

@@ -15,14 +15,14 @@ import {
 import _ from 'lodash';
 import customValidators from './customValidators';
 
-// Types
-type $ObjectType = Record<string, string>;
-
 type $DefaultValidation = (
   item: string,
   required?: boolean,
   includeNull?: boolean,
 ) => $Middleware;
+
+// Types
+type $ObjectType = Record<string, string>;
 
 // validation chain instance
 
@@ -40,9 +40,7 @@ const validQueryBase: $ValidQueryBase = (item, required = false) => {
   }).withMessage(`'${item}' is required`);
 };
 
-type $ValidQueryString = $DefaultValidation;
-
-export const validQueryString: $ValidQueryString = (item, required) => {
+export const validQueryString: $DefaultValidation = (item, required) => {
   const queryItem = validQueryBase(
     item,
     required,
@@ -65,9 +63,7 @@ const validParamsBase: $ValidParamsBase = (item, required = false) => {
   }).withMessage(`'${item}' is required`);
 };
 
-type $ValidParamsString = $DefaultValidation;
-
-export const validParamsString: $ValidParamsString = (item, required) => {
+export const validParamsString: $DefaultValidation = (item, required) => {
   const paramsItem = validParamsBase(
     item,
     required,
@@ -76,9 +72,7 @@ export const validParamsString: $ValidParamsString = (item, required) => {
   return paramsItem.isString().withMessage(`'${item}' has to be a string`);
 };
 
-type $ValidParamsId = $DefaultValidation;
-
-export const validParamsId: $ValidParamsId = (item, required) => {
+export const validParamsId: $DefaultValidation = (item, required) => {
   const paramsItem = validParamsBase(
     item,
     required,
@@ -126,9 +120,7 @@ const validBodyBase = (
     .withMessage(`'${item}' is required`);
 };
 
-type $ValidBodyString = $DefaultValidation;
-
-export const validBodyString: $ValidBodyString = (item, required) => {
+export const validBodyString: $DefaultValidation = (item, required) => {
   const bodyItem = validBodyBase(
     item,
     required,
@@ -137,9 +129,7 @@ export const validBodyString: $ValidBodyString = (item, required) => {
   return bodyItem.isString().withMessage(`'${item}' has to be a string`);
 };
 
-type $ValidBodyStringOrNull = $DefaultValidation;
-
-export const validBodyStringOrNull: $ValidBodyStringOrNull = (item, required) => {
+export const validBodyStringOrNull: $DefaultValidation = (item, required) => {
   const bodyItem = validBodyBase(
     item,
     required,
@@ -152,9 +142,7 @@ export const validBodyStringOrNull: $ValidBodyStringOrNull = (item, required) =>
   return bodyItem;
 };
 
-type $ValidBodyNumber = $DefaultValidation;
-
-export const validBodyNumber: $ValidBodyNumber = (item, required) => {
+export const validBodyNumber: $DefaultValidation = (item, required) => {
   const bodyItem = validBodyBase(
     item,
     required,
@@ -163,9 +151,7 @@ export const validBodyNumber: $ValidBodyNumber = (item, required) => {
   return bodyItem.isInt().withMessage(`'${item}' has to be a number`);
 };
 
-type $ValidBodyNumberOrNull = $DefaultValidation;
-
-export const validBodyNumberOrNull: $ValidBodyNumberOrNull = (item, required) => {
+export const validBodyNumberOrNull: $DefaultValidation = (item, required) => {
   const bodyItem = validBodyBase(
     item,
     required,
@@ -178,9 +164,7 @@ export const validBodyNumberOrNull: $ValidBodyNumberOrNull = (item, required) =>
   return bodyItem;
 };
 
-type $ValidBodyDecimal = $DefaultValidation;
-
-export const validBodyDecimal: $ValidBodyDecimal = (item, required) => {
+export const validBodyDecimal: $DefaultValidation = (item, required) => {
   const bodyItem = validBodyBase(
     item,
     required,
@@ -189,9 +173,7 @@ export const validBodyDecimal: $ValidBodyDecimal = (item, required) => {
   return bodyItem.isDecimal().withMessage(`'${item}' has to be a decimal`);
 };
 
-type $ValidBodyDecimalOrNull = $DefaultValidation;
-
-export const validBodyDecimalOrNull: $ValidBodyDecimalOrNull = (item, required) => {
+export const validBodyDecimalOrNull: $DefaultValidation = (item, required) => {
   const bodyItem = validBodyBase(
     item,
     required,
@@ -204,9 +186,7 @@ export const validBodyDecimalOrNull: $ValidBodyDecimalOrNull = (item, required) 
   return bodyItem;
 };
 
-type $ValidBodyBoolean = $DefaultValidation;
-
-export const validBodyBoolean: $ValidBodyBoolean = (item, required) => {
+export const validBodyBoolean: $DefaultValidation = (item, required) => {
   const bodyItem = validBodyBase(
     item,
     required,
@@ -215,9 +195,7 @@ export const validBodyBoolean: $ValidBodyBoolean = (item, required) => {
   return bodyItem.isBoolean().withMessage(`'${item}' has to be a boolean`);
 };
 
-type $ValidBodyEmail = $DefaultValidation;
-
-export const validBodyEmail: $ValidBodyEmail = (item, required) => {
+export const validBodyEmail: $DefaultValidation = (item, required) => {
   const bodyItem = validBodyBase(
     item,
     required,
@@ -226,22 +204,19 @@ export const validBodyEmail: $ValidBodyEmail = (item, required) => {
   return bodyItem.isEmail().withMessage(`'${item}' has to be a valid email address`);
 };
 
-type $ValidBodyEmailOrNull = $DefaultValidation;
-
-export const validBodyEmailOrNull: $ValidBodyEmailOrNull = (item, required) => {
+export const validBodyEmailOrNull: $DefaultValidation = (item, required) => {
   const bodyItem = validBodyBase(
     item,
     required,
     true,
   );
 
+  /* eslint-disable-next-line sonarjs/slow-regex */
   return bodyItem.custom((value) => _.isNull(value) || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value))
     .withMessage(`'${item}' has to be a valid email address or null`);
 };
 
-type $ValidBodyPin = $DefaultValidation;
-
-export const validBodyPin: $ValidBodyPin = (item, required) => {
+export const validBodyPin: $DefaultValidation = (item, required) => {
   const bodyItem = validBodyBase(
     item,
     required,
@@ -251,13 +226,11 @@ export const validBodyPin: $ValidBodyPin = (item, required) => {
     max: 4,
     min: 4,
   }).withMessage(`'${item}' has to be 4 characters length`)
-    .custom((value) => /^.*?[0-9]$/.test(value))
+    .custom((value) => /^.*?\d$/.test(value))
     .withMessage(`'${item}' value must be digits (0-9)`);
 };
 
-type $ValidBodyId = $DefaultValidation;
-
-export const validBodyId: $ValidBodyId = (item, required) => {
+export const validBodyId: $DefaultValidation = (item, required) => {
   const bodyItem = validBodyBase(
     item,
     required,
@@ -271,9 +244,7 @@ export const validBodyId: $ValidBodyId = (item, required) => {
     .withMessage(`'${item}' has to be an UUIDv4`);
 };
 
-type $ValidBodyIdOrNull = $DefaultValidation;
-
-export const validBodyIdOrNull: $ValidBodyIdOrNull = (item, required) => {
+export const validBodyIdOrNull: $DefaultValidation = (item, required) => {
   const bodyItem = validBodyBase(
     item,
     required,
@@ -384,9 +355,7 @@ export const validBodyArray: $ValidBodyArray = (item, types, required) => {
   return bodyItem;
 };
 
-type $ValidBodyDate = $DefaultValidation;
-
-export const validBodyDate: $ValidBodyDate = (item, required) => {
+export const validBodyDate: $DefaultValidation = (item, required) => {
   const bodyItem = validBodyBase(
     item,
     required,
@@ -400,9 +369,7 @@ export const validBodyDate: $ValidBodyDate = (item, required) => {
     .withMessage(`'${item}' has to be a valid date`);
 };
 
-type $ValidBodyDateOrNull = $DefaultValidation;
-
-export const validBodyDateOrNull: $ValidBodyDateOrNull = (item, required) => {
+export const validBodyDateOrNull: $DefaultValidation = (item, required) => {
   const bodyItem = validBodyBase(
     item,
     required,
@@ -419,9 +386,7 @@ export const validBodyDateOrNull: $ValidBodyDateOrNull = (item, required) => {
   return bodyItem;
 };
 
-type $ValidBodyObject = $DefaultValidation;
-
-export const validBodyObject: $ValidBodyObject = (item, required) => {
+export const validBodyObject: $DefaultValidation = (item, required) => {
   const bodyItem = validBodyBase(
     item,
     required,
@@ -438,9 +403,7 @@ export const validBodyObject: $ValidBodyObject = (item, required) => {
     .withMessage(`'${item}' has to be an object`);
 };
 
-type $ValidBodyObjectLike = $DefaultValidation;
-
-export const validBodyObjectLike: $ValidBodyObjectLike = (item, required) => {
+export const validBodyObjectLike: $DefaultValidation = (item, required) => {
   const bodyItem = validBodyBase(
     item,
     required,

@@ -1,8 +1,8 @@
 export * from './types';
 
 export {
-  default as validateRequest,
   forbidBodyItem,
+  default as validateRequest,
   validBodyArray,
   validBodyBoolean,
   validBodyDate,

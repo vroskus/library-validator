@@ -297,7 +297,7 @@ describe(
           'should validate undefined optional params',
           (done) => {
             app.post(
-              `/:${item}?`,
+              `{/:${item}}`,
               validParamsString(item),
               (req: $Request, res: $Response) => {
                 try {
@@ -330,7 +330,7 @@ describe(
           'should throw an error on validation if required params are undefined',
           (done) => {
             app.post(
-              `/:${item}?`,
+              `{/:${item}}`,
               validParamsString(
                 item,
                 true,
@@ -484,7 +484,7 @@ describe(
           'should validate undefined optional value',
           (done) => {
             app.post(
-              `/:${item}?`,
+              `{/:${item}}`,
               validParamsString(item),
               (req: $Request, res: $Response) => {
                 defaultCompleteHandler(
@@ -536,7 +536,7 @@ describe(
           'should invalidate undefined value',
           (done) => {
             app.post(
-              `/:${item}?`,
+              `{/:${item}}`,
               validParamsString(
                 item,
                 true,
@@ -572,7 +572,7 @@ describe(
           'should validate undefined optional value',
           (done) => {
             app.post(
-              `/:${item}?`,
+              `{/:${item}}`,
               validParamsId(item),
               (req: $Request, res: $Response) => {
                 defaultCompleteHandler(
@@ -596,7 +596,7 @@ describe(
           'should validate defined correct value',
           (done) => {
             app.post(
-              `/:${item}?`,
+              `{/:${item}}`,
               validParamsId(
                 item,
                 true,
@@ -664,7 +664,7 @@ describe(
           'should validate undefined optional value',
           (done) => {
             app.post(
-              `/:${item}?`,
+              `{/:${item}}`,
               validParamsEnum(
                 item,
                 itemTypes,
@@ -748,7 +748,7 @@ describe(
           'should return validated defined optional params',
           (done) => {
             app.post(
-              `/:${item}?`,
+              `{/:${item}}`,
               validParamsEnum(
                 item,
                 itemTypes,

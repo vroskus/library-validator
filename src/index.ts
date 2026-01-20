@@ -1,34 +1,41 @@
-export * from './types';
+import type {
+  Schema,
+} from 'zod';
+
+import _ from 'lodash';
+
+export type $Schema = Schema;
 
 export {
-  forbidBodyItem,
-  default as validateRequest,
-  validBodyArray,
-  validBodyBoolean,
-  validBodyDate,
-  validBodyDateOrNull,
-  validBodyDecimal,
-  validBodyDecimalOrNull,
-  validBodyEmail,
-  validBodyEmailOrNull,
-  validBodyEnum,
-  validBodyEnumOrNull,
-  validBodyId,
-  validBodyIdOrNull,
-  validBodyNumber,
-  validBodyNumberOrNull,
-  validBodyObject,
-  validBodyObjectLike,
-  validBodyPin,
-  validBodyString,
-  validBodyStringOrNull,
-  validBodyTemplate,
-  validParamsEnum,
-  validParamsId,
-  validParamsString,
-  validQueryString,
-} from './request';
+  z,
+} from 'zod';
 export {
-  default as validateResponse,
-  Validator,
-} from './response';
+  validateRequest,
+} from 'zod-express-middleware';
+
+type $Data = Array<Record<string, unknown>> | Record<string, unknown>;
+
+export const validateResponse = <D extends $Data>(
+  data: D,
+  schema: Schema,
+): D => {
+  try {
+    return schema.parse(data);
+  } catch (err) {
+    const error = new Error('Invalid response data');
+
+    _.set(
+      error,
+      'key',
+      'RESPONSE_VALIDATION_ERROR',
+    );
+
+    _.set(
+      error,
+      'data',
+      err.issues,
+    );
+
+    throw error;
+  }
+};

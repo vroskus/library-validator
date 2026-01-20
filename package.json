@@ -26,6 +26,7 @@
   },
   "dependencies": {
     "@types/express-serve-static-core": "^5.1.1",
+    "@vroskus/library-error": "^1.1.0",
     "lodash": "^4.17.21",
     "zod": "^3.24.2",
     "zod-express-middleware": "^1.4.0"

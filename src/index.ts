@@ -1,9 +1,17 @@
+// Global Types
 import type {
   Schema,
 } from 'zod';
 
+// Helpers
 import _ from 'lodash';
 
+// Enums
+import {
+  BaseErrorKey,
+} from '@vroskus/library-error';
+
+// Types
 export type $Schema = Schema;
 
 export {
@@ -27,7 +35,7 @@ export const validateResponse = <D extends $Data>(
     _.set(
       error,
       'key',
-      'RESPONSE_VALIDATION_ERROR',
+      BaseErrorKey.responseValidationError,
     );
 
     _.set(

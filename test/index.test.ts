@@ -1,6 +1,12 @@
 // Helpers
 import express from 'express';
 import supertest from 'supertest';
+
+// Enums
+import {
+  BaseErrorKey,
+} from '@vroskus/library-error';
+
 import {
   validateRequest,
   validateResponse,
@@ -65,7 +71,7 @@ describe(
         const response = await request.post(route).send(invalidData);
 
         expect(response.status).toBe(errorStatus);
-        expect(response.body.key).toBe('REQUEST_VALIDATION_ERROR');
+        expect(response.body.key).toBe(BaseErrorKey.requestValidationError);
       },
     );
   },
@@ -109,7 +115,7 @@ describe(
         const response = await request.post(route).send(invalidData);
 
         expect(response.status).toBe(errorStatus);
-        expect(response.body.key).toBe('RESPONSE_VALIDATION_ERROR');
+        expect(response.body.key).toBe(BaseErrorKey.responseValidationError);
       },
     );
   },

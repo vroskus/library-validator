@@ -1,4 +1,5 @@
-import fs from 'node:fs';
+/* eslint-disable @typescript-eslint/no-require-imports */
+const fs = require('fs');
 
 const zeroValue = 0;
 

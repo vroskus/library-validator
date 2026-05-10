@@ -41,7 +41,10 @@ export const validateResponse = <D extends $Data>(
     _.set(
       error,
       'data',
-      err.issues,
+      _.get(
+        err,
+        'issues',
+      ),
     );
 
     throw error;

@@ -26,22 +26,22 @@
   },
   "dependencies": {
     "@types/express-serve-static-core": "^5.1.1",
-    "@vroskus/library-error": "^1.1.0",
-    "lodash": "^4.17.21",
+    "@vroskus/library-error": "^1.1.1",
+    "lodash": "^4.18.1",
     "zod": "3.24.2",
     "zod-express-middleware": "^1.4.0"
   },
   "devDependencies": {
     "@types/jest": "^30.0.0",
-    "@types/lodash": "^4.17.21",
-    "@types/node": "^25.0.3",
-    "@vroskus/eslint-config": "^1.0.30",
+    "@types/lodash": "^4.17.24",
+    "@types/node": "^25.6.2",
+    "@vroskus/eslint-config": "^1.1.3",
     "express": "^5.2.1",
-    "jest": "^30.2.0",
+    "jest": "^30.4.2",
     "jest-coverage-thresholds-bumper": "^1.1.0",
     "supertest": "^7.2.2",
-    "ts-jest": "^29.4.6",
-    "typescript": "^5.9.3"
+    "ts-jest": "^29.4.9",
+    "typescript": "^6.0.3"
   },
   "jest": {
     "preset": "ts-jest",
